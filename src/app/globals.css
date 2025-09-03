@@ -13,6 +13,11 @@
 .hero-subtitle {
   max-width: 56ch;
 }
+.avatar {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
 
 /* Sections */
 .section {

@@ -28,9 +28,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <nav className="navbar navbar-expand-md bg-white border-bottom">
           <div className="container">
-            <a className="navbar-brand fw-semibold" href="/">Helene</a>
+            <a className="navbar-brand fw-semibold" href="#">Helene</a>
             <div className="ms-auto">
-              <a className="nav-link d-inline-block" href="/projects">Projects</a>
+              <a className="nav-link d-inline-block me-2" href="/projects">Projects</a>
               <a className="nav-link d-inline-block" href="/about">About</a>
             </div>
           </div>
