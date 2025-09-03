@@ -1,70 +1,32 @@
-/* 1. Set base font and layout */
-
-:root {
-  --primary-color: #0d6efd;      /* Bootstrap primary blue */
-  --secondary-color: #6c757d;    /* Bootstrap secondary gray */
-  --bg-color: #f8f9fa;           /* Light background */
+/* Layout */
+.site-bg {
+  background: #f8f9fa; /* subtle light gray */
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  color: #212529;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+/* Hero */
+.hero {
+  padding: 72px 0;
+}
+.hero-title {
+  letter-spacing: -0.5px;
+}
+.hero-subtitle {
+  max-width: 56ch;
 }
 
-/* 2. Headlines */
-
-h1, h2, h3, h4, h5 {
-  margin-top: 0;
-  margin-bottom: 0.5em;
-  color: var(--primary-color);
+/* Sections */
+.section {
+  padding: 48px 0;
+}
+.section-title {
+  margin-bottom: 1rem;
 }
 
-/* 3. Links */
-
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+/* Cards */
+.card-hover {
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
-
-a:hover {
-  color: darken(var(--primary-color), 10%);
-  text-decoration: underline;
-}
-
-/* 4. Container default padding */
-
-main.container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-/* 5. Buttons default spacing */
-
-.btn {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-/* 6. Forms (if you add contact form later) */
-
-input, textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-}
-
-/* 7. Footer styling */
-
-footer {
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  color: var(--secondary-color);
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.08);
 }

@@ -26,7 +26,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <nav className="navbar navbar-expand-md bg-white border-bottom">
+          <div className="container">
+            <a className="navbar-brand fw-semibold" href="/">Helene</a>
+            <div className="ms-auto">
+              <a className="nav-link d-inline-block" href="/projects">Projects</a>
+              <a className="nav-link d-inline-block" href="/about">About</a>
+            </div>
+          </div>
+        </nav>
         {children}
+        <footer className="border-top py-4 mt-5">
+          <div className="container text-body-secondary small">© {new Date().getFullYear()} Helene</div>
+        </footer>
       </body>
     </html>
   );
