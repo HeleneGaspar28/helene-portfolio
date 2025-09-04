@@ -134,6 +134,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          <a className="text-decoration-none d-block my-4 text-center" href="/about">Learn more</a>
         </div>
       </section>
 
@@ -209,9 +210,9 @@ export default function HomePage() {
       </section>
 
       {/* Contact / CTA */}
-      <section className="py-5 bg-light">
+      <section id="contact"className="py-5 bg-light">
         <div className="container text-center mb-5">
-          <h2 className="display-6 fw-semibold mb-2">Let's Work Together</h2>
+          <h2 className="display-6 fw-semibold mb-2 text-primary">Let's Work Together</h2>
           <p className="text-body-secondary mx-auto" style={{ maxWidth: "70ch" }}>
             Ready to contribute to a growth-stage company. Available for full-stack developer roles.
           </p>

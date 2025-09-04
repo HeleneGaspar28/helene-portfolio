@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";  // 👈 add this line
@@ -26,12 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <nav className="navbar navbar-expand-md bg-white border-bottom">
+        <nav className="navbar navbar-expand-md bg-white border-bottom sticky-top">
           <div className="container">
-            <a className="navbar-brand fw-semibold" href="#">Helene</a>
+            <Link href="/" className="navbar-brand fw-semibold">Helene</Link>
             <div className="ms-auto">
-              <a className="nav-link d-inline-block me-2" href="/projects">Projects</a>
-              <a className="nav-link d-inline-block" href="/about">About</a>
+              <Link href="/projects" className="nav-link d-inline-block me-4">Projects</Link>
+              <Link href="/about" className="nav-link d-inline-block me-4">About</Link>
+              <Link href="#contact" className="btn btn-primary d-inline-block">Contact</Link>
             </div>
           </div>
         </nav>
