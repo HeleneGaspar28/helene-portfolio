@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { assertAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import UploadImage from "@/components/UploadImage";
+import UploadImage from "@/app/_components/UploadImage";
 
 export default function NewProjectPage() {
   async function create(formData: FormData) {

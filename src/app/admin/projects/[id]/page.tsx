@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { assertAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
+
 export default async function EditProject({ params }: { params: { id: string } }) {
   const id = Number(params.id);
   const project = await prisma.project.findUnique({ where: { id } });
@@ -23,13 +24,6 @@ export default async function EditProject({ params }: { params: { id: string } }
     redirect(`/projects/${project.slug}`);
   }
 
-  async function destroy() {
-    "use server";
-    assertAdmin();
-    await prisma.project.delete({ where: { id } });
-    redirect("/projects");
-  }
-
   return (
     <main className="container py-5" style={{ maxWidth: 720 }}>
       <h1 className="h4 mb-4">Edit Project</h1>
@@ -43,7 +37,6 @@ export default async function EditProject({ params }: { params: { id: string } }
         <input name="coverUrl" className="form-control" defaultValue={project.coverUrl ?? ""} />
         <div className="d-flex gap-2">
           <button className="btn btn-primary">Save</button>
-          <form action={destroy}><button className="btn btn-outline-danger" formAction={destroy}>Delete</button></form>
         </div>
       </form>
     </main>

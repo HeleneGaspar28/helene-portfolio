@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
+
 type Props = { params: { slug: string } };
 
 export default async function ProjectShow({ params }: Props) {
