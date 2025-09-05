@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import FeaturedProjectsCarousel from "@/app/_components/FeaturedProjectsCarousel";
+import FeaturedProjectsCarousel from "@/app/components/FeaturedProjectsCarousel";
 
 export default async function HomePage() {
   const projects = await prisma.project.findMany({
