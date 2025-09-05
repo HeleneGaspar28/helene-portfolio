@@ -35,3 +35,12 @@
   transform: translateY(-2px);
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.08);
 }
+
+/* About */
+.about-text {
+  font-size: 1rem;         /* 16px */
+  line-height: 1.7;        /* good readability */
+  color: #333;             /* softer than pure black */
+  max-width: 700px;        /* keep lines short */
+  margin: 0 auto;          /* center the text */
+}
