@@ -36,15 +36,16 @@
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.08);
 }
 
-/* About */
+/* About on homepage */
 .about-text {
-  font-size: 1rem;         /* 16px */
-  line-height: 1.7;        /* good readability */
-  color: #333;             /* softer than pure black */
-  max-width: 700px;        /* keep lines short */
-  margin: 0 auto;          /* center the text */
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
+/* About page */
 .object-fit-cover { object-fit: cover; }
 
 .chip {
@@ -79,4 +80,9 @@
 .floating-photo.bottom-start {
   bottom: -20px;
   left: -20px;
+}
+
+.stack-6 { display: grid; row-gap: 6rem; }      /* ~96px */
+@media (max-width: 768px) {
+  .stack-6 { row-gap: 3.5rem; }
 }
