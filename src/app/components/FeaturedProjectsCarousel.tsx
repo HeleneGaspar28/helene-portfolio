@@ -38,17 +38,7 @@ export default function FeaturedProjectsCarousel({ projects }: { projects: Proje
             <div className="fp-body">
               <h3 className="h6 mb-2 text-truncate">{project.title}</h3>
               <div className="d-flex gap-2 justify-content-center">
-                {project.githubUrl && (
-                  <a
-                    className="btn btn-sm btn-outline-secondary"
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                )}
-                <Link className="btn btn-sm btn-primary" href={`/projects/${project.slug}`}>
+                <Link className="btn btn-sm btn-outline-secondary" href={`/projects/${project.slug}`}>
                   View
                 </Link>
               </div>

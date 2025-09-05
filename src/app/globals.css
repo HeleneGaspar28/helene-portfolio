@@ -44,3 +44,39 @@
   max-width: 700px;        /* keep lines short */
   margin: 0 auto;          /* center the text */
 }
+
+.object-fit-cover { object-fit: cover; }
+
+.chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(13,110,253,0.08);
+  color: #0d6efd;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.main-photo-wrapper {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.floating-photo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.floating-photo.top-end {
+  top: -20px;
+  right: -20px;
+}
+
+.floating-photo.bottom-start {
+  bottom: -20px;
+  left: -20px;
+}
