@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata = { title: "About" };
 
 export default function AboutPage() {
-  const tags = ["Problem Solver", "Coffee Enthusiast", "Full-stack Dev"];
+  const tags = ["Great teammate", "Vintage lover", "Full-stack Dev"];
 
   const story = [
     {
@@ -22,16 +22,16 @@ export default function AboutPage() {
     {
       title: "The Evolution",
       text:
-        "Decided to build. Completed full-stack training and shifted focus to engineering.",
+        "Decided to build. Completed Le Wagon's full-stack bootcamp and shifted focus to engineering.",
       icon: "🧩",
     },
   ];
 
   const facts = [
-    { label: "Coffee per day", value: "4+" , icon: "☕️" },
-    { label: "ARR growth", value: "0→€300K", icon: "🚀" },
-    { label: "Market expansion", value: "3 countries", icon: "🌍" },
-    { label: "Ideas per minute", value: "∞", icon: "💡" },
+    { label: "Is meditation for me", value: "Swimming" , icon: "🏊🏽‍♂️" },
+    { label: "I sell vintage pieces online", value: "Vintage Lover", icon: "👗" },
+    { label: "I lived in", value: "3 Countries", icon: "🌍" },
+    { label: "Are my Grandparents", value: "My best friends", icon: "👵🏼" },
   ];
 
   return (
@@ -39,7 +39,7 @@ export default function AboutPage() {
       {/* Back link */}
       <div className="mb-4">
         <Link href="/" className="text-muted text-decoration-none small">
-          ← Back to Portfolio
+          ← Back to Homepage
         </Link>
       </div>
 
@@ -49,8 +49,7 @@ export default function AboutPage() {
           <div className="col-12 col-lg-6">
             <h1 className="text-primary display-4 fw-bold mb-3">Hi, I'm Helene! 👋</h1>
             <p className="lead text-muted mb-3">
-              A business-minded developer who connects market needs with
-              practical engineering.
+              By day I’m a full-stack developer, by night I’m hunting vintage treasures and mispronounce French verbs.
             </p>
 
             <div className="d-flex flex-wrap gap-2">
@@ -76,7 +75,7 @@ export default function AboutPage() {
               {/* Top-right small photo */}
               <div className="floating-photo top-end">
                 <Image
-                  src="/candid.jpg"
+                  src="/helene_fun.jpg"
                   alt="Candid"
                   fill
                   className="object-fit-cover rounded-3"
@@ -86,7 +85,7 @@ export default function AboutPage() {
               {/* Bottom-left small photo */}
               <div className="floating-photo bottom-start">
                 <Image
-                  src="/fun.jpg"
+                  src="/helene_left.jpeg"
                   alt="Fun"
                   fill
                   className="object-fit-cover rounded-3"
@@ -118,14 +117,15 @@ export default function AboutPage() {
         <section className="mb-5">
           <div className="row g-4 align-items-center rounded-4 p-4 bg-light-subtle">
             <div className="col-12 col-lg-7">
-              <h3 className="mb-3">What Makes Me Different?</h3>
+              <h3 className="text-primary mb-3">What Makes Me Different?</h3>
               <p className="text-muted mb-3">
-                I’ve worked both on growth metrics and on product delivery. This
-                helps me ship features that matter and measure the result.
+                After graduating, I joined Velopass as the first employee. The company had no customers or revenue. Over three years, I helped scale it to 1,500+ B2B clients in three countries and €300K ARR. I led go-to-market, closed partnerships, worked with developers to turn feedback into features, and shaped the roadmap. To drive growth, I moved to France and joined Station F.
+              </p>
+              <p className="text-muted mb-3">
+                Working side by side with developers made me want to build myself. I completed Le Wagon’s full-stack program and am now looking for my first software engineering role in a team where I can learn from experienced engineers.
               </p>
               <p className="text-muted mb-0">
-                Outside of work: coffee shops, reading about product and infra, and
-                planning the next trip.
+                Outside of work, I enjoy hunting for vintage treasures online and movie nights with my boyfriend.
               </p>
             </div>
             <div className="col-12 col-lg-5">
@@ -135,7 +135,7 @@ export default function AboutPage() {
               >
                 {/* Replace with a candid photo */}
                 <Image
-                  src="/helene_foto.jpg"
+                  src="/helene_adventure.jpg"
                   alt="Helene candid"
                   fill
                   className="object-fit-cover"
