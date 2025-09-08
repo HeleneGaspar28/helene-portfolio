@@ -99,7 +99,7 @@ export default function AboutPage() {
 
         {/* My Story */}
         <section className="mb-5">
-          <h2 className="text-center fw-bold mb-4">My Story</h2>
+          <h2 className="text-primary text-center display-6 fw-semibold mb-2">My Story</h2>
           <div className="row g-4">
             {story.map((s, i) => (
               <div className="col-12 col-md-6 col-lg-4" key={i}>
@@ -149,7 +149,7 @@ export default function AboutPage() {
 
         {/* Facts */}
         <section className="mb-5">
-          <h3 className="text-center fw-bold mb-4">Random Facts About Me</h3>
+          <h3 className="text-primary text-center display-6 fw-semibold mb-2">Random Facts About Me</h3>
           <div className="row g-3">
             {facts.map((f) => (
               <div className="col-12 col-md-6 col-lg-3" key={f.label}>
