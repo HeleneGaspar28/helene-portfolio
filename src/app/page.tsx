@@ -10,6 +10,7 @@ export default async function HomePage() {
     select: {
       id: true,
       title: true,
+      subtitle: true,
       summary: true,
       slug: true,
       coverUrl: true,

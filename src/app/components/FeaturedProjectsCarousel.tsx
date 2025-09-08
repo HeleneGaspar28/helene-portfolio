@@ -6,6 +6,7 @@ import Link from "next/link";
 type Project = {
   id: string;
   title: string;
+  subtitle: string;
   slug: string;
   coverUrl: string;
   githubUrl?: string | null;
@@ -34,7 +35,7 @@ export default function FeaturedProjectsCarousel({
         <div className="fp-wrapper">
           <div className="fp-track" style={{ animationDuration: duration }}>
             {items.map((project, idx) => (
-              <div key={`${project.id}-${idx}`} className="card shadow-sm me-3" style={{ width: "320px" }}>
+              <div key={`${project.id}-${idx}`} className="card shadow-sm me-3" style={{ width: "400px" }}>
                 {project.coverUrl && (
                   <div className="ratio ratio-16x9">
                     <Image
@@ -48,6 +49,7 @@ export default function FeaturedProjectsCarousel({
                 )}
                 <div className="card-body text-center">
                   <h5 className="card-title text-primary text-truncate">{project.title}</h5>
+                  <p className="card-text text-muted small mb-3 text-truncate">{project.subtitle}</p>
                   <Link
                     href={`/projects/${project.slug}`}
                     className="btn btn-outline-secondary btn-sm"
