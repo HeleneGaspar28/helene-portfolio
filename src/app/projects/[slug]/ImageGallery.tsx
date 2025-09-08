@@ -61,7 +61,7 @@ export default function ImageGallery({
 
       {/* Thumbnails */}
       {all.length > 1 && (
-        <div className="d-flex flex-wrap gap-2">
+        <div className="d-flex flex-wrap gap-2 justify-content-center">
           {all.map((img, i) => (
             <button
               key={img.id ?? img.url}

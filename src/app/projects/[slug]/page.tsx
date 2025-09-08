@@ -13,6 +13,7 @@ export default async function ProjectShowPage({ params }: Props) {
     select: {
       id: true,
       title: true,
+      subtitle: true,
       summary: true,
       coverUrl: true,
       githubUrl: true,
