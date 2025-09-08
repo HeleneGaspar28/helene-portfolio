@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ImageGallery from "./ImageGallery";
 
 export const revalidate = 0;
 
@@ -18,12 +18,14 @@ export default async function ProjectShowPage({ params }: Props) {
       githubUrl: true,
       websiteUrl: true,
       techStack: true,
+      images: {
+        orderBy: { id: "asc" },
+        select: { id: true, url: true, alt: true },
+      },
     },
   });
 
   if (!project) return notFound();
-
-  type Stack = Record<string, string[] | undefined>;
 
   const raw = (project.techStack ?? {}) as Record<string, unknown>;
   const entries = Object.entries(raw).filter(
@@ -66,23 +68,14 @@ export default async function ProjectShowPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="position-relative ratio ratio-16x9 rounded overflow-hidden mb-4">
-        {project.coverUrl ? (
-          <Image
-            src={project.coverUrl}
-            alt={project.title}
-            fill
-            className="object-fit-cover"
-            sizes="100vw"
-          />
-        ) : (
-          <div className="bg-light w-100 h-100 d-flex align-items-center justify-content-center">
-            <span className="text-muted small">No image</span>
-          </div>
-        )}
-      </div>
+      {/* Image gallery */}
+      <ImageGallery
+        coverUrl={project.coverUrl}
+        images={project.images}
+        title={project.title}
+      />
 
-      <div className="row g-4">
+      <div className="row g-4 mt-4">
         <div className="col-12 col-lg-8">
           {project.summary ? (
             <div className="prose">
@@ -97,7 +90,6 @@ export default async function ProjectShowPage({ params }: Props) {
           <div className="card border-0 shadow-sm">
             <div className="card-body">
               <h6 className="text-uppercase text-primary mb-3">Tech Stack</h6>
-
               {entries.length === 0 ? (
                 <p className="text-muted small mb-0">No tech listed.</p>
               ) : (
