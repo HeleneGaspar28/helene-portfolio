@@ -120,13 +120,13 @@ export default function AboutPage() {
           <div className="row g-4 align-items-center rounded-4 p-4 bg-light-subtle">
             <div className="col-12 col-lg-7">
               <h3 className="text-primary mb-3">What Makes Me Different?</h3>
-              <p className="text-muted mb-3">
+              <p className="text-muted mb-3 me-4">
                 After graduating, I joined Velopass as the first employee. The company had no customers or revenue. Over three years, I helped scale it to 1,500+ B2B clients in three countries and €300K ARR. I led go-to-market, closed partnerships, worked with developers to turn feedback into features, and shaped the roadmap. To drive growth, I moved to France and joined Station F.
               </p>
-              <p className="text-muted mb-3">
+              <p className="text-muted mb-3 me-4">
                 Working side by side with developers made me want to build myself. I completed Le Wagon’s full-stack program and am now looking for my first software engineering role in a team where I can learn from experienced engineers.
               </p>
-              <p className="text-muted mb-0">
+              <p className="text-muted mb-0 me-4">
                 Outside of work, I enjoy hunting for vintage treasures online and movie nights with my boyfriend.
               </p>
             </div>
