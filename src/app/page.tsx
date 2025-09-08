@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import FeaturedProjectsCarousel from "@/app/components/FeaturedProjectsCarousel";
+import FeaturedProjectsCarousel from "./components/FeaturedProjectsCarousel";
 
 export default async function HomePage() {
   const projects = await prisma.project.findMany({
@@ -42,21 +42,7 @@ export default async function HomePage() {
       </header>
 
       {/* Featured projects  */}
-      <section className="section py-5 text-center">
-        <div className="container">
-          <h1 className="h4 section-title mb-4">Featured projects</h1>
-
-          {projects.length === 0 ? (
-            <p className="text-body-secondary">No projects yet.</p>
-          ) : (
-            <FeaturedProjectsCarousel projects={projects} />
-          )}
-
-          <Link className="text-decoration-none d-block my-4" href="/projects">
-            See all
-          </Link>
-        </div>
-      </section>
+      <FeaturedProjectsCarousel projects={projects} />
 
       {/* About Me */}
       <section className="py-5 bg-light">

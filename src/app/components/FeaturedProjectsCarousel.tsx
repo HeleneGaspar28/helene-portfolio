@@ -11,40 +11,54 @@ type Project = {
   githubUrl?: string | null;
 };
 
-export default function FeaturedProjectsCarousel({ projects }: { projects: Project[] }) {
-  // duplicate items to create a seamless loop
-  const items = [...projects, ...projects];
+export default function FeaturedProjectsCarousel({
+  projects,
+}: {
+  projects?: Project[] | null;
+}) {
+  const list: Project[] = Array.isArray(projects) ? projects : [];
+  const items = [...list, ...list];
 
-  // choose a speed you like; larger = slower
   const secondsPerCard = 4;
-  const duration = `${projects.length * secondsPerCard}s`;
+  const duration = `${list.length * secondsPerCard || 1}s`;
+
+  if (list.length === 0) return null;
 
   return (
-    <div className="fp-wrapper">
-      <div className="fp-track" style={{ animationDuration: duration }}>
-        {items.map((project, idx) => (
-          <div key={`${project.id}-${idx}`} className="fp-card">
-            <div className="fp-media">
-              {project.coverUrl ? (
-                <Image
-                  src={project.coverUrl}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 80vw, 33vw"
-                />
-              ) : null}
-            </div>
+    <section className="py-5 bg-white">
+      <div className="container">
+        <h2 className="text-primary display-6 fw-semibold mb-4 text-center">
+          Featured Projects
+        </h2>
 
-            <div className="fp-body">
-              <h3 className="h6 mb-2 text-truncate">{project.title}</h3>
-              <div className="d-flex gap-2 justify-content-center">
-                <Link className="btn btn-sm btn-outline-secondary" href={`/projects/${project.slug}`}>
-                  View
-                </Link>
+        <div className="fp-wrapper">
+          <div className="fp-track" style={{ animationDuration: duration }}>
+            {items.map((project, idx) => (
+              <div key={`${project.id}-${idx}`} className="card shadow-sm me-3" style={{ width: "320px" }}>
+                {project.coverUrl && (
+                  <div className="ratio ratio-16x9">
+                    <Image
+                      src={project.coverUrl}
+                      alt={project.title}
+                      fill
+                      className="card-img-top rounded-top"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                )}
+                <div className="card-body text-center">
+                  <h5 className="card-title text-primary text-truncate">{project.title}</h5>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="btn btn-outline-secondary btn-sm"
+                  >
+                    View
+                  </Link>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       <style jsx>{`
@@ -52,7 +66,6 @@ export default function FeaturedProjectsCarousel({ projects }: { projects: Proje
           position: relative;
           overflow: hidden;
           width: 100%;
-          padding: 8px 0;
         }
         .fp-track {
           display: flex;
@@ -62,35 +75,18 @@ export default function FeaturedProjectsCarousel({ projects }: { projects: Proje
           animation-timing-function: linear;
           animation-iteration-count: infinite;
         }
-        /* pause on hover for usability */
         .fp-wrapper:hover .fp-track {
           animation-play-state: paused;
         }
-        .fp-card {
-          width: clamp(260px, 40vw, 420px);
-          flex: 0 0 auto;
-          border-radius: 1rem;
-          overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.08);
-          background: #fff;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-        }
-        .fp-media {
-          position: relative;
-          aspect-ratio: 16 / 9;
-        }
-        .fp-media :global(img) {
-          object-fit: cover;
-        }
-        .fp-body {
-          padding: 12px;
-        }
         @keyframes fp-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(calc(-50% - 0.5rem)); }
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(calc(-50% - 0.5rem));
+          }
         }
-        /* The track contains items duplicated twice; moving by 50% loops seamlessly. */
       `}</style>
-    </div>
+    </section>
   );
 }

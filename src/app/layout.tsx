@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.min.css";  // 👈 add this line
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import Script from "next/script";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* cloudinary */}
+        <Script src="https://widget.cloudinary.com/v2.0/global/all.js" strategy="beforeInteractive" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {/* navbar */}
         <nav className="navbar navbar-expand-md bg-white border-bottom sticky-top">

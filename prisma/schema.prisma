@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
-  provider = "sqlite" // switch to "postgresql" in prod
+  provider = "sqlite"          // change to "postgresql" in prod
   url      = env("DATABASE_URL")
 }
 
@@ -11,13 +8,31 @@ generator client {
 }
 
 model Project {
-  id         Int      @id @default(autoincrement())
-  slug       String   @unique
+  id         Int            @id @default(autoincrement())
+  slug       String         @unique
   title      String
+  subtitle   String?
   summary    String
+
   githubUrl  String?
   websiteUrl String?
-  coverUrl   String? // one cover image for now
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+
+  coverUrl   String?
+  images     ProjectImage[]
+
+  techStack  Json?          // no default on SQLite
+
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+}
+
+model ProjectImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  alt       String?
+  position  Int      @default(0)
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId Int
+
+  @@index([projectId, position])
 }
