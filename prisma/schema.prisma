@@ -20,7 +20,7 @@ model Project {
   coverUrl   String?
   images     ProjectImage[]
 
-  techStack  Json?          // no default on SQLite
+  techStack  Json?
 
   createdAt  DateTime       @default(now())
   updatedAt  DateTime       @updatedAt

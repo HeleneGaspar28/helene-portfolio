@@ -17,12 +17,20 @@ export default async function ProjectShowPage({ params }: Props) {
       coverUrl: true,
       githubUrl: true,
       websiteUrl: true,
-      createdAt: true,
-      updatedAt: true,
+      techStack: true,
     },
   });
 
   if (!project) return notFound();
+
+  type Stack = Record<string, string[] | undefined>;
+
+  const raw = (project.techStack ?? {}) as Record<string, unknown>;
+  const entries = Object.entries(raw).filter(
+    ([, v]) => Array.isArray(v) && v.length > 0
+  ) as [string, string[]][];
+
+  const label = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   return (
     <main className="container py-5">
@@ -88,17 +96,26 @@ export default async function ProjectShowPage({ params }: Props) {
         <aside className="col-12 col-lg-4">
           <div className="card border-0 shadow-sm">
             <div className="card-body">
-              <h6 className="text-uppercase text-muted mb-3">Tech Stack</h6>
-              <dl className="row mb-0 small">
-                <dt className="col-4 text-muted">Frontend</dt>
-                <dd className="col-8">
-                  CSS, HTML, JavaScript
-                </dd>
-                <dt className="col-4 text-muted">Backend</dt>
-                <dd className="col-8">
-                  Ruby, Ruby on Rails
-                </dd>
-              </dl>
+              <h6 className="text-uppercase text-primary mb-3">Tech Stack</h6>
+
+              {entries.length === 0 ? (
+                <p className="text-muted small mb-0">No tech listed.</p>
+              ) : (
+                entries.map(([section, values]) => (
+                  <dl className="row mb-2 small" key={section}>
+                    <dt className="col-4 text-muted">{label(section)}</dt>
+                    <dd className="col-8">
+                      <div className="d-flex flex-wrap gap-2">
+                        {values.map((v) => (
+                          <span className="badge rounded-pill text-bg-light" key={v}>
+                            {v}
+                          </span>
+                        ))}
+                      </div>
+                    </dd>
+                  </dl>
+                ))
+              )}
             </div>
           </div>
         </aside>
