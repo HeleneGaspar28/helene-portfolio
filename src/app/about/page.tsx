@@ -37,10 +37,12 @@ export default function AboutPage() {
   return (
     <main className="container py-5">
       {/* Back link */}
-      <div className="mb-4">
-        <Link href="/" className="text-muted text-decoration-none small">
-          ← Back to Homepage
-        </Link>
+      <div className="d-flex align-items-end justify-content-between mb-4">
+        <h1 className="text-primary mb-0">Projects</h1>
+        <Link
+          href="/"
+          className="text-decoration-none text-muted small"
+        >← Back to Homepage</Link>
       </div>
 
       {/* Hero */}
