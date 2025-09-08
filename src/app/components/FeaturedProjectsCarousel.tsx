@@ -61,6 +61,7 @@ export default function FeaturedProjectsCarousel({
             ))}
           </div>
         </div>
+        <a className="text-decoration-none d-block my-4 text-center" href="/projects">See all</a>
       </div>
 
       <style jsx>{`
