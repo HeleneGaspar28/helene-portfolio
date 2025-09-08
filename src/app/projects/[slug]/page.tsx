@@ -37,35 +37,46 @@ export default async function ProjectShowPage({ params }: Props) {
 
   return (
     <main className="container py-5">
-      <div className="mb-3">
-        <Link href="/projects" className="text-decoration-none text-muted small">
-          ← Back to Projects
-        </Link>
-      </div>
-
       <div className="d-flex flex-wrap gap-3 align-items-end justify-content-between mb-3">
-        <h1 className="text-primary mb-0">{project.title}</h1>
-        <div className="d-flex gap-2">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              className="btn btn-outline-secondary btn-sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+        <div>
+          <h1 className="text-primary mb-1">{project.title}</h1>
+          {project.subtitle && (
+            <p className="text-muted lead mb-0">{project.subtitle}</p>
           )}
-          {project.websiteUrl && (
-            <a
-              href={project.websiteUrl}
-              className="btn btn-primary btn-sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Website
-            </a>
-          )}
+        </div>
+
+        <div className="d-flex flex-column align-items-end gap-2">
+          {/* back link */}
+          <Link
+            href="/projects"
+            className="text-decoration-none text-muted small mb-4"
+          >
+            ← Back to Projects
+          </Link>
+
+          {/* buttons */}
+          <div className="d-flex gap-2">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                className="btn btn-outline-secondary btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            )}
+            {project.websiteUrl && (
+              <a
+                href={project.websiteUrl}
+                className="btn btn-primary btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
@@ -77,16 +88,27 @@ export default async function ProjectShowPage({ params }: Props) {
       />
 
       <div className="row g-4 mt-4">
+        {/* Overview (left) */}
         <div className="col-12 col-lg-8">
-          {project.summary ? (
-            <div className="prose">
-              <p>{project.summary}</p>
+          <section className="card border-0 shadow-sm">
+            <div className="card-body">
+              <h6 className="text-uppercase text-primary mb-3">Overview</h6>
+
+              {project.summary ? (
+                <>
+                  {/* main paragraph */}
+                  <p className="fs-6 lh-lg text-body">
+                    {project.summary}
+                  </p>
+                </>
+              ) : (
+                <p className="text-muted mb-0">No summary yet.</p>
+              )}
             </div>
-          ) : (
-            <p className="text-muted">No summary yet.</p>
-          )}
+          </section>
         </div>
 
+        {/* Tech stack (right) */}
         <aside className="col-12 col-lg-4">
           <div className="card border-0 shadow-sm">
             <div className="card-body">
@@ -96,7 +118,9 @@ export default async function ProjectShowPage({ params }: Props) {
               ) : (
                 entries.map(([section, values]) => (
                   <dl className="row mb-2 small" key={section}>
-                    <dt className="col-4 text-muted">{label(section)}</dt>
+                    <dt className="col-4 text-muted">
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </dt>
                     <dd className="col-8">
                       <div className="d-flex flex-wrap gap-2">
                         {values.map((v) => (
@@ -113,6 +137,7 @@ export default async function ProjectShowPage({ params }: Props) {
           </div>
         </aside>
       </div>
+
     </main>
   );
 }
