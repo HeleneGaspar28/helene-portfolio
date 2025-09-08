@@ -22,7 +22,10 @@ export default async function ProjectsPage() {
     <main className="container py-5">
       <div className="d-flex align-items-end justify-content-between mb-4">
         <h1 className="text-primary mb-0">Projects</h1>
-        <span className="text-muted small">{projects.length} total</span>
+        <Link
+          href="/"
+          className="text-decoration-none text-muted small"
+        >← Back to Homepage</Link>
       </div>
 
       {projects.length === 0 ? (
