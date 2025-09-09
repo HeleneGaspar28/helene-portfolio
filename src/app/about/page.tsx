@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="col-12 col-lg-6">
             <h1 className="text-primary display-4 fw-bold mb-3">Hi, I am Helene! 👋</h1>
             <p className="lead text-muted mb-3">
-              By day I’m a full-stack developer, by night I’m hunting vintage treasures and mispronounce French verbs.
+              Full-stack developer who always pushes herself and loves working in team.
             </p>
 
             <div className="d-flex flex-wrap gap-2">
@@ -126,7 +126,7 @@ export default function AboutPage() {
                 Working side by side with developers made me want to build myself. I completed Le Wagon’s full-stack program and am now looking for my first software engineering role in a team where I can learn from experienced engineers.
               </p>
               <p className="text-muted mb-0 me-4">
-                Outside of work, I enjoy hunting for vintage treasures online and movie nights with my boyfriend.
+                Outside of work, I enjoy hunting for vintage treasures online and traveling the world.
               </p>
             </div>
             <div className="col-12 col-lg-5">
