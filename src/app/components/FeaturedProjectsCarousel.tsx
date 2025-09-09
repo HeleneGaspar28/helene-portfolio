@@ -20,7 +20,8 @@ export default function FeaturedProjectsCarousel({
   return (
     <section className="py-5">
       <div className="container">
-        <h2 className="display-6 fw-semibold mb-3 text-primary">Featured projects</h2>
+        <h2 className="display-6 fw-semibold mb-3 text-primary text-center">Featured projects</h2>
+        <p className="text-body-secondary mx-auto about-subtitle text-center mb-4">{"Projects I've worked on."}</p>
         <div className="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
           {projects.map((p) => (
             <div key={p.id} className="col">
@@ -52,6 +53,7 @@ export default function FeaturedProjectsCarousel({
             </div>
           ))}
         </div>
+        <Link className="text-decoration-none d-block my-4 text-center" href="/projects">See all</Link>
       </div>
     </section>
   );
