@@ -87,10 +87,10 @@ export default async function ProjectShowPage({ params }: Props) {
         title={project.title}
       />
 
-      <div className="row g-4 mt-4">
+      <div className="row g-4 mt-4 align-items-stretch">
         {/* Overview (left) */}
-        <div className="col-12 col-lg-8">
-          <section className="card border-0 shadow-sm">
+        <div className="col-12 col-lg-8 d-flex">
+          <section className="card border-0 shadow-sm flex-fill">
             <div className="card-body">
               <h6 className="text-uppercase text-primary mb-3">Overview</h6>
 
@@ -109,8 +109,8 @@ export default async function ProjectShowPage({ params }: Props) {
         </div>
 
         {/* Tech stack (right) */}
-        <aside className="col-12 col-lg-4">
-          <div className="card border-0 shadow-sm">
+        <aside className="col-12 col-lg-4 d-flex">
+          <div className="card border-0 shadow-sm flex-fill">
             <div className="card-body">
               <h6 className="text-uppercase text-primary mb-3">Tech Stack</h6>
               {entries.length === 0 ? (

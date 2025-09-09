@@ -13,7 +13,6 @@ export default function ImageGallery({
   images?: Img[];
   title: string;
 }) {
-  // merge: cover first, then others without duplicating the cover
   const all = useMemo<Img[]>(() => {
     const rest = (images || []).filter((i) => i.url !== coverUrl);
     return [
@@ -44,7 +43,7 @@ export default function ImageGallery({
     <>
       {/* Big image */}
       <div
-        className="position-relative ratio ratio-16x9 rounded overflow-hidden mb-3"
+        className="position-relative ratio ratio-16x9 rounded overflow-hidden mb-3 bg-light" // + bg-light
         role="button"
         aria-label="Open image"
         onClick={() => setLightboxOpen(true)}
@@ -53,13 +52,12 @@ export default function ImageGallery({
           src={all[active].url}
           alt={all[active].alt || title}
           fill
-          className="object-fit-cover"
+          className="object-fit-contain"
           sizes="100vw"
           priority
         />
       </div>
 
-      {/* Thumbnails */}
       {all.length > 1 && (
         <div className="d-flex flex-wrap gap-2 justify-content-center">
           {all.map((img, i) => (
@@ -67,21 +65,15 @@ export default function ImageGallery({
               key={img.id ?? img.url}
               type="button"
               onClick={() => setActive(i)}
-              className={`position-relative border-0 p-0 rounded overflow-hidden ${
-                i === active ? "ring" : ""
-              }`}
-              style={{
-                width: 120,
-                height: 72,
-                outline: i === active ? "2px solid var(--bs-primary)" : "none",
-              }}
+              className={`position-relative border-0 p-0 rounded overflow-hidden ${i === active ? "ring" : ""} bg-light`} // + bg-light
+              style={{ width: 120, height: 72, outline: i === active ? "2px solid var(--bs-primary)" : "none" }}
               aria-label={`Show image ${i + 1}`}
             >
               <Image
                 src={img.url}
                 alt={img.alt || `${title} ${i + 1}`}
                 fill
-                className="object-fit-cover"
+                className="object-fit-contain"
                 sizes="120px"
               />
             </button>
