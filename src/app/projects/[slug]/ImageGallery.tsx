@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 
-type Img = { id?: string; url: string; alt?: string | null };
+type Img = { id?: string | number; url: string; alt?: string | null };
 export default function ImageGallery({
   coverUrl,
   images = [],
