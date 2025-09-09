@@ -38,7 +38,6 @@ export default function AboutPage() {
     <main className="container py-5">
       {/* Back link */}
       <div className="d-flex align-items-end justify-content-between mb-4">
-        <h1 className="text-primary mb-0">Projects</h1>
         <Link
           href="/"
           className="text-decoration-none text-muted small"
