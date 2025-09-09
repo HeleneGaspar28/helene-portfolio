@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     try { revalidatePath("/projects"); } catch {}
 
     return NextResponse.json({ ok: true, project: created }, { status: 201 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error(err);
     return NextResponse.json({ ok: false, error: err.message }, { status: 400 });
   }

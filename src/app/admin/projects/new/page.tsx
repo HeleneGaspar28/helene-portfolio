@@ -132,7 +132,7 @@ export default function NewProjectPage() {
               <TagInput
                 values={form.techStack[k]}
                 onChange={(vals) =>
-                  set("techStack", { ...form.techStack, [k]: vals } as any)
+                  set("techStack", { ...form.techStack, [k]: vals } as unknown)
                 }
               />
             </div>

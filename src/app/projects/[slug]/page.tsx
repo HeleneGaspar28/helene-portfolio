@@ -57,24 +57,24 @@ export default async function ProjectShowPage({ params }: Props) {
           {/* buttons */}
           <div className="d-flex gap-2">
             {project.githubUrl && (
-              <a
+              <Link
                 href={project.githubUrl}
                 className="btn btn-outline-secondary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 GitHub
-              </a>
+              </Link>
             )}
             {project.websiteUrl && (
-              <a
+              <Link
                 href={project.websiteUrl}
                 className="btn btn-primary btn-sm"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Website
-              </a>
+              </Link>
             )}
           </div>
         </div>

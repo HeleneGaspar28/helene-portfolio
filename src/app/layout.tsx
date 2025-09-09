@@ -60,7 +60,7 @@ export default function RootLayout({
         {/* Contact / CTA */}
         <section id="contact"className="py-5 bg-light">
           <div className="container text-center mb-5">
-            <h2 className="display-6 fw-semibold mb-2 text-primary">Let's Work Together</h2>
+            <h2 className="display-6 fw-semibold mb-2 text-primary">{"Let's Work Together"}</h2>
             <p className="text-body-secondary mx-auto" style={{ maxWidth: "70ch" }}>
               Ready to contribute to a growth-stage company. Available for software engineering roles.
             </p>
@@ -79,9 +79,9 @@ export default function RootLayout({
                         <span className="icon-badge me-3">✉️</span>
                         <div>
                           <div className="fw-medium">Email</div>
-                          <a href="mailto:helenegaspar@outlook.com" className="text-body-secondary text-decoration-none">
+                          <Link href="mailto:helenegaspar@outlook.com" className="text-body-secondary text-decoration-none">
                             helenegaspar@outlook.com
-                          </a>
+                          </Link>
                         </div>
                       </div>
 
@@ -96,8 +96,8 @@ export default function RootLayout({
                       <div>
                         <div className="fw-medium mb-2">Connect with me</div>
                         <div className="d-flex gap-2">
-                          <a className="btn btn-light border" href="https://www.linkedin.com/in/helenegaspar/" target="_blank">LinkedIn</a>
-                          <a className="btn btn-light border" href="https://github.com/HeleneGaspar28" target="_blank">GitHub</a>
+                          <Link className="btn btn-light border" href="https://www.linkedin.com/in/helenegaspar/" target="_blank">LinkedIn</Link>
+                          <Link className="btn btn-light border" href="https://github.com/HeleneGaspar28" target="_blank">GitHub</Link>
                         </div>
                       </div>
                     </div>
@@ -110,12 +110,12 @@ export default function RootLayout({
                         </div>
 
                         <div className="vstack gap-3">
-                          <a className="btn btn-primary btn-lg w-100" href="https://www.canva.com/design/DAGyGV8uvEY/mR7lCP8qrbcIukh6b3v4uQ/view?utm_content=DAGyGV8uvEY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb772496446" target="_blank">
+                          <Link className="btn btn-primary btn-lg w-100" href="https://www.canva.com/design/DAGyGV8uvEY/mR7lCP8qrbcIukh6b3v4uQ/view?utm_content=DAGyGV8uvEY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb772496446" target="_blank">
                             ⬇️&nbsp; View CV
-                          </a>
-                          <a className="btn btn-outline-dark btn-lg w-100" href="mailto:helenegaspar@outlook.com">
+                          </Link>
+                          <Link className="btn btn-outline-dark btn-lg w-100" href="mailto:helenegaspar@outlook.com">
                             ✉️&nbsp; Send Email
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

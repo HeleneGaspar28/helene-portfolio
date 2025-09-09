@@ -7,7 +7,7 @@ type Props = {
 
 export default function CloudinaryUpload({ multiple = false, onUpload }: Props) {
   const open = () => {
-    const widget = (window as any).cloudinary.createUploadWidget(
+    const widget = (window as unknown).cloudinary.createUploadWidget(
       {
         cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
         uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
@@ -15,7 +15,7 @@ export default function CloudinaryUpload({ multiple = false, onUpload }: Props) 
         sources: ["local", "url", "camera"],
         folder: "projects",
       },
-      (error: any, result: any) => {
+      (error: unknown, result: unknown) => {
         if (!error && result && result.event === "success") {
           onUpload([{ url: result.info.secure_url, public_id: result.info.public_id }]);
         }

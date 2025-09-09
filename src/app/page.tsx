@@ -36,8 +36,8 @@ export default async function HomePage() {
             Full-stack developer looking for my first software engineering role.
           </p>
           <div className="d-flex gap-2 mt-3 justify-content-center">
-            <a className="btn btn-lg btn-primary" href="/projects">Projects</a>
-            <a className="btn btn-lg btn-outline-secondary" href="/about">About</a>
+            <Link className="btn btn-lg btn-primary" href="/projects">Projects</Link>
+            <Link className="btn btn-lg btn-outline-secondary" href="/about">About</Link>
           </div>
         </div>
       </header>
@@ -52,7 +52,7 @@ export default async function HomePage() {
           <div className="text-center mb-5">
             <h2 className="text-primary display-6 fw-semibold mb-2">About Me</h2>
             <p className="text-body-secondary mx-auto about-subtitle">
-              I love working in team and I'm a good communicator.
+              {"I love working in team and I'm a good communicator."}
             </p>
           </div>
 
@@ -101,7 +101,7 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
-          <a className="text-decoration-none d-block my-4 text-center" href="/about">Learn more</a>
+          <Link className="text-decoration-none d-block my-4 text-center" href="/about">Learn more</Link>
         </div>
       </section>
 

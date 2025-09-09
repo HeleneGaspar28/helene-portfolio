@@ -49,7 +49,7 @@ export default function AboutPage() {
       <div className="stack-6">
         <section className="row align-items-center g-4 mb-5">
           <div className="col-12 col-lg-6">
-            <h1 className="text-primary display-4 fw-bold mb-3">Hi, I'm Helene! 👋</h1>
+            <h1 className="text-primary display-4 fw-bold mb-3">Hi, I am Helene! 👋</h1>
             <p className="lead text-muted mb-3">
               By day I’m a full-stack developer, by night I’m hunting vintage treasures and mispronounce French verbs.
             </p>
