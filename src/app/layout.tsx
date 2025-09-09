@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import Script from "next/script";
+import Image from "next/image";
+
 
 
 const geistSans = Geist({
@@ -36,7 +38,15 @@ export default function RootLayout({
         {/* navbar */}
         <nav className="navbar navbar-expand-md bg-white border-bottom sticky-top">
           <div className="container">
-            <Link href="/" className="navbar-brand fw-semibold">Helene</Link>
+            <Link href="/" className="navbar-brand d-flex align-items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="Helene Logo"
+                width={50}
+                height={50}
+                className="rounded"
+              />
+            </Link>
             <div className="ms-auto">
               <Link href="/projects" className="nav-link d-inline-block me-4">Projects</Link>
               <Link href="/about" className="nav-link d-inline-block me-4">About</Link>
