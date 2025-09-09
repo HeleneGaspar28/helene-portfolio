@@ -1,95 +1,58 @@
-"use client";
-
-import Image from "next/image";
+// src/app/components/FeaturedProjectsCarousel.tsx
 import Link from "next/link";
+import Image from "next/image";
 
-type Project = {
-  id: string;
+type CarouselProject = {
+  id: string | number;
   title: string;
-  subtitle: string;
+  subtitle: string | null;
+  summary: string;
   slug: string;
-  coverUrl: string;
-  githubUrl?: string | null;
+  coverUrl: string | null;
+  githubUrl: string | null;
 };
 
 export default function FeaturedProjectsCarousel({
   projects,
 }: {
-  projects?: Project[] | null;
+  projects: CarouselProject[];
 }) {
-  const list: Project[] = Array.isArray(projects) ? projects : [];
-  const items = [...list, ...list];
-
-  const secondsPerCard = 4;
-  const duration = `${list.length * secondsPerCard || 1}s`;
-
-  if (list.length === 0) return null;
-
   return (
-    <section className="py-5 bg-white">
+    <section className="py-5">
       <div className="container">
-        <h2 className="text-primary display-6 fw-semibold mb-4 text-center">
-          Featured Projects
-        </h2>
-
-        <div className="fp-wrapper">
-          <div className="fp-track" style={{ animationDuration: duration }}>
-            {items.map((project, idx) => (
-              <div key={`${project.id}-${idx}`} className="card shadow-sm me-3" style={{ width: "400px" }}>
-                {project.coverUrl && (
-                  <div className="ratio ratio-16x9">
-                    <Image
-                      src={project.coverUrl}
-                      alt={project.title}
-                      fill
-                      className="card-img-top rounded-top"
-                      style={{ objectFit: "cover" }}
-                    />
+        <h2 className="display-6 fw-semibold mb-3 text-primary">Featured projects</h2>
+        <div className="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+          {projects.map((p) => (
+            <div key={p.id} className="col">
+              <Link href={`/projects/${p.slug}`} className="text-decoration-none">
+                <div className="card h-100 border-0 shadow-sm">
+                  <div className="position-relative ratio ratio-16x9 rounded-top overflow-hidden">
+                    {p.coverUrl ? (
+                      <Image
+                        src={p.coverUrl}
+                        alt={p.title}
+                        fill
+                        className="object-fit-cover"
+                        sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      />
+                    ) : (
+                      <div className="bg-light w-100 h-100 d-flex align-items-center justify-content-center">
+                        <span className="text-muted small">No image</span>
+                      </div>
+                    )}
                   </div>
-                )}
-                <div className="card-body text-center">
-                  <h5 className="card-title text-primary text-truncate">{project.title}</h5>
-                  <p className="card-text text-muted small mb-3 text-truncate">{project.subtitle}</p>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="btn btn-outline-secondary btn-sm"
-                  >
-                    View
-                  </Link>
+                  <div className="card-body text-center">
+                    <h5 className="card-title text-primary mb-2">{p.title}</h5>
+                    {p.subtitle && (
+                      <p className="card-text text-muted small mb-0">{p.subtitle}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              </Link>
+            </div>
+          ))}
         </div>
-        <Link className="text-decoration-none d-block my-4 text-center" href="/projects">See all</Link>
       </div>
-
-      <style jsx>{`
-        .fp-wrapper {
-          position: relative;
-          overflow: hidden;
-          width: 100%;
-        }
-        .fp-track {
-          display: flex;
-          gap: 1rem;
-          width: max-content;
-          animation-name: fp-scroll;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-        }
-        .fp-wrapper:hover .fp-track {
-          animation-play-state: paused;
-        }
-        @keyframes fp-scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(calc(-50% - 0.5rem));
-          }
-        }
-      `}</style>
     </section>
   );
 }
