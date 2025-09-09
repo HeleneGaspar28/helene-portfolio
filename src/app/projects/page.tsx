@@ -2,8 +2,21 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
+// type for the list page
+type ProjectForList = {
+  id: number | string;
+  slug: string;
+  title: string;
+  subtitle: string | null;
+  summary: string;
+  coverUrl: string | null;
+  githubUrl: string | null;
+  websiteUrl: string | null;
+  images: { url: string; alt: string | null }[];
+};
+
 export default async function ProjectsPage() {
-  const projects = await prisma.project.findMany({
+  const projects: ProjectForList[] = await prisma.project.findMany({
     orderBy: { createdAt: "desc" },
     select: {
       id: true,
@@ -14,7 +27,11 @@ export default async function ProjectsPage() {
       coverUrl: true,
       githubUrl: true,
       websiteUrl: true,
-      images: { take: 1, orderBy: { id: "asc" }, select: { url: true, alt: true } },
+      images: {
+        take: 1,
+        orderBy: { id: "asc" },
+        select: { url: true, alt: true },
+      },
     },
   });
 
@@ -22,10 +39,9 @@ export default async function ProjectsPage() {
     <main className="container py-5">
       <div className="d-flex align-items-end justify-content-between mb-4">
         <h1 className="text-primary mb-0">Projects</h1>
-        <Link
-          href="/"
-          className="text-decoration-none text-muted small"
-        >← Back to Homepage</Link>
+        <Link href="/" className="text-decoration-none text-muted small">
+          ← Back to Homepage
+        </Link>
       </div>
 
       {projects.length === 0 ? (
@@ -58,14 +74,25 @@ export default async function ProjectsPage() {
 
                   <div className="card-body text-center">
                     <h5 className="card-title text-primary mb-2">{p.title}</h5>
-                    {p.summary && (
-                      <p className="card-text text-muted small mb-3" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                    {p.subtitle && (
+                      <p
+                        className="card-text text-muted small mb-3"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
                         {p.subtitle}
                       </p>
                     )}
 
                     <div className="d-flex justify-content-center gap-2">
-                      <Link href={`/projects/${p.slug}`} className="btn btn-outline-secondary btn-sm">
+                      <Link
+                        href={`/projects/${p.slug}`}
+                        className="btn btn-outline-secondary btn-sm"
+                      >
                         View
                       </Link>
                     </div>
