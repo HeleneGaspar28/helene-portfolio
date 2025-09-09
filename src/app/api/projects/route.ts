@@ -1,11 +1,9 @@
 // app/api/projects/route.ts
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { prisma } from "@/lib/prisma";
 import { NewProjectSchema } from "@/lib/validation";
 import { slugify } from "@/lib/slugify";
-import { revalidatePath } from "next/cache";
-
-const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
@@ -18,29 +16,34 @@ export async function POST(req: Request) {
       data: {
         slug,
         title: data.title,
-        subtitle: data.subtitle || null,
+        subtitle: data.subtitle ?? null,
         summary: data.summary,
-        githubUrl: data.githubUrl || null,
-        websiteUrl: data.websiteUrl || null,
-        coverUrl: data.coverUrl || null,
-        techStack: data.techStack, // Prisma Json
+        githubUrl: data.githubUrl ?? null,
+        websiteUrl: data.websiteUrl ?? null,
+        coverUrl: data.coverUrl ?? null,
+        techStack: data.techStack, // JSON column
         images: {
-          create: data.images.map((img) => ({
+          create: data.images.map((img, i) => ({
             url: img.url,
             alt: img.alt,
-            position: img.position,
+            position: img.position ?? i,
           })),
         },
       },
       include: { images: true },
     });
 
-    // revalidate listing/detail pages if you have them
-    try { revalidatePath("/projects"); } catch {}
+    // revalidate list and detail pages (ignore if not configured)
+    try {
+      revalidatePath("/projects");
+      revalidatePath(`/projects/${created.slug}`);
+    } catch {}
 
     return NextResponse.json({ ok: true, project: created }, { status: 201 });
-  } catch (err: unknown) {
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
     console.error(err);
-    return NextResponse.json({ ok: false, error: err.message }, { status: 400 });
+    return NextResponse.json({ ok: false, error: message }, { status: 400 });
   }
 }
