@@ -1,10 +1,13 @@
-// app/admin/projects/new/page.tsx
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import CloudinaryUpload from "@/app/components/cloudinayUpload";
 import type { NewProjectInput } from "@/lib/validation";
+
+// helper types
+type TechKeys = keyof NewProjectInput["techStack"];
+type UploadFile = { url: string }; // adjust to your uploader shape if needed
 
 export default function NewProjectPage() {
   const router = useRouter();
@@ -20,8 +23,11 @@ export default function NewProjectPage() {
     images: [],
   });
 
-  const set = <K extends keyof NewProjectInput>(k: K, v: NewProjectInput[K]) =>
+  const setField = <K extends keyof NewProjectInput>(k: K, v: NewProjectInput[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
+
+  const updateTech = <K extends TechKeys>(key: K, vals: string[]) =>
+    setForm((f) => ({ ...f, techStack: { ...f.techStack, [key]: vals } }));
 
   const addImage = (url: string) =>
     setForm((f) => ({
@@ -35,10 +41,7 @@ export default function NewProjectPage() {
       const j = i + dir;
       if (j < 0 || j >= arr.length) return f;
       [arr[i], arr[j]] = [arr[j], arr[i]];
-      return {
-        ...f,
-        images: arr.map((img, idx) => ({ ...img, position: idx })),
-      };
+      return { ...f, images: arr.map((img, idx) => ({ ...img, position: idx })) };
     });
 
   const removeImage = (i: number) =>
@@ -63,6 +66,8 @@ export default function NewProjectPage() {
     }
   }
 
+  const TECH_FIELDS: TechKeys[] = ["frontend", "backend", "databases", "tools"];
+
   return (
     <div className="mx-auto max-w-3xl space-y-6 p-6">
       <h1 className="text-2xl font-semibold">New Project</h1>
@@ -75,7 +80,7 @@ export default function NewProjectPage() {
             <input
               className="w-full rounded-xl border px-3 py-2"
               value={form.title}
-              onChange={(e) => set("title", e.target.value)}
+              onChange={(e) => setField("title", e.target.value)}
               required
             />
           </label>
@@ -84,7 +89,7 @@ export default function NewProjectPage() {
             <input
               className="w-full rounded-xl border px-3 py-2"
               value={form.subtitle || ""}
-              onChange={(e) => set("subtitle", e.target.value)}
+              onChange={(e) => setField("subtitle", e.target.value)}
             />
           </label>
         </div>
@@ -96,7 +101,7 @@ export default function NewProjectPage() {
             className="w-full rounded-xl border px-3 py-2"
             rows={4}
             value={form.summary}
-            onChange={(e) => set("summary", e.target.value)}
+            onChange={(e) => setField("summary", e.target.value)}
             required
           />
         </label>
@@ -108,7 +113,7 @@ export default function NewProjectPage() {
             <input
               className="w-full rounded-xl border px-3 py-2"
               value={form.githubUrl || ""}
-              onChange={(e) => set("githubUrl", e.target.value)}
+              onChange={(e) => setField("githubUrl", e.target.value)}
               placeholder="https://github.com/…"
             />
           </label>
@@ -117,7 +122,7 @@ export default function NewProjectPage() {
             <input
               className="w-full rounded-xl border px-3 py-2"
               value={form.websiteUrl || ""}
-              onChange={(e) => set("websiteUrl", e.target.value)}
+              onChange={(e) => setField("websiteUrl", e.target.value)}
               placeholder="https://…"
             />
           </label>
@@ -126,14 +131,12 @@ export default function NewProjectPage() {
         {/* Tech stack */}
         <fieldset className="space-y-3">
           <legend className="text-sm">Tech stack</legend>
-          {(["frontend", "backend", "databases", "tools"] as const).map((k) => (
+          {TECH_FIELDS.map((k) => (
             <div key={k}>
               <label className="block text-xs uppercase">{k}</label>
               <TagInput
                 values={form.techStack[k]}
-                onChange={(vals) =>
-                  set("techStack", { ...form.techStack, [k]: vals } as unknown)
-                }
+                onChange={(vals) => updateTech(k, vals)}
               />
             </div>
           ))}
@@ -144,9 +147,9 @@ export default function NewProjectPage() {
           <div className="flex items-center justify-between">
             <span className="text-sm">Cover image</span>
             <CloudinaryUpload
-              onUpload={(files) => {
+              onUpload={(files: UploadFile[]) => {
                 const [{ url }] = files;
-                set("coverUrl", url);
+                setField("coverUrl", url);
               }}
             />
           </div>
@@ -159,13 +162,16 @@ export default function NewProjectPage() {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-sm">Gallery images</span>
-            <CloudinaryUpload multiple onUpload={(files) => files.forEach((f) => addImage(f.url))} />
+            <CloudinaryUpload
+              multiple
+              onUpload={(files: UploadFile[]) => files.forEach((f) => addImage(f.url))}
+            />
           </div>
 
           <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
             {form.images.map((img, i) => (
               <li key={i} className="space-y-2">
-                <img src={img.url} className="h-32 w-full rounded-xl object-cover" />
+                <img src={img.url} alt={img.alt || "Gallery image"} className="h-32 w-full rounded-xl object-cover" />
                 <input
                   className="w-full rounded-xl border px-2 py-1 text-sm"
                   placeholder="Alt text"
