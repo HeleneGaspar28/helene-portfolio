@@ -2,8 +2,15 @@ import { prisma } from "@/lib/prisma";
 import { assertAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function EditProject({ params }: { params: { id: string } }) {
-  const id = Number(params.id);
+export default async function EditProject({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: idParam } = await params;
+  const id = Number(idParam);
+  if (Number.isNaN(id)) redirect("/admin/projects/new");
+
   const project = await prisma.project.findUnique({ where: { id } });
   if (!project) return redirect("/admin/projects/new");
 
