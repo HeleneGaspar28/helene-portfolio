@@ -13,14 +13,13 @@
     "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
-  "next": "latest",
-  "react": "latest",
-  "react-dom": "latest",
-  "@prisma/client": "latest",
-  "prisma": "latest",
-  "bootstrap": "^5.3.3",
-  "zod": "^3.23.8"
-},
+    "@prisma/client": "^6.15.0",
+    "bootstrap": "^5.3.3",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "^3.23.8"
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
@@ -28,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "prisma": "^6.15.0",
     "ts-node": "^10.9.2",
     "typescript": "^5"
   }
