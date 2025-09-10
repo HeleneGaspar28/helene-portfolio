@@ -5,11 +5,15 @@ import ImageGallery from "./ImageGallery";
 
 export const revalidate = 0;
 
-type Props = { params: { slug: string } };
+export default async function ProjectShowPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-export default async function ProjectShowPage({ params }: Props) {
   const project = await prisma.project.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     select: {
       id: true,
       title: true,
@@ -34,6 +38,7 @@ export default async function ProjectShowPage({ params }: Props) {
   ) as [string, string[]][];
 
   const label = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 
   return (
     <main className="container py-5">
