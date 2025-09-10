@@ -1,23 +1,24 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-interface AdminLoginPageProps {
-  searchParams?: {
-    next?: string;
-  };
-}
+export default async function AdminLoginPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ next?: string }>;
+}) {
+  const sp = (await searchParams) ?? {};
+  const nextPath = typeof sp.next === "string" ? sp.next : "/admin/projects/new";
 
-export default function AdminLoginPage({ searchParams }: AdminLoginPageProps) {
   async function login(formData: FormData) {
     "use server";
     const pw = String(formData.get("password") ?? "");
     if (pw === process.env.ADMIN_PASSWORD) {
-      (await cookies()).set("admin", "1", {
+      cookies().set("admin", "1", {
         httpOnly: true,
         sameSite: "lax",
         path: "/",
       });
-      redirect(searchParams?.next || "/admin/projects/new");
+      redirect(nextPath);
     }
     throw new Error("Invalid password");
   }
